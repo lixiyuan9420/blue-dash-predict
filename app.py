@@ -1,16 +1,17 @@
-# This is a sample Python script.
+import config
+from flask import Flask
+from db import conn
+import biz_logic
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# 创建一个Flask app对象
+app = Flask(__name__)
 
+# 加载初始化设置
+app.config.from_object(config)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# 登记蓝图，于是这个app可以作为一个web server生效
+app.register_blueprint(biz_logic.bp)
 
-
-# Press the green button in the gutter to run the script.
+# 自动运行这个app
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    app.run()
