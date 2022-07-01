@@ -1,11 +1,9 @@
 import pymysql
 from dbutils.pooled_db import PooledDB
 
-
 # 一些常量
 mysql_username = "bluedash"
-mysql_host_name = "bluedash@localhost"
-# mysql_host_name = "localhost"
+mysql_host_name = "localhost"
 mysql_host_password = "BLUEYOUUP"
 mysql_port_number = 3306
 mysql_database_name_2 = "预测数据库"
