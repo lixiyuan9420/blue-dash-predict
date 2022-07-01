@@ -40,6 +40,7 @@ def __extract_third_month(data_json) -> ThirdMonthPredict:
         '电商平台':"xxx"
         '备注':"xxx"
         '预测销售总金额（三个月）':1000.00}
+        "token": "abcdefg123"
     }
     :param data_json: JSON
     :return:ThirdMonthPredict
