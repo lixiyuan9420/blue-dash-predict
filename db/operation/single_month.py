@@ -18,7 +18,8 @@ from typing import Tuple
 #         省份 varchar(20),
 #         区域 varchar(255),
 #         电商平台 varchar(20),
-#         备注 varchar(200)
+#         备注 varchar(200),
+#         填写日期 int,
 #     )
 
 class OneMonthPredict:
@@ -39,13 +40,14 @@ class OneMonthPredict:
         region_one:区域-第一月线下
         platform:电商平台
         record:备注
+        date:填写日期
         data_id: 这条记录在数据库里的id，通常不用, 默认-1
     """
 
     def __init__(self, predict_id: str, predict_man: str, predict_start_time: str,
                  predict_part: str, total_money_one: float, increase_shops_one: int, bottle_sale_one: int,
                  box_sale_one: int, predict_sale: float, area_one: str, province_one: str, region_one: str,
-                 platform: str, record: str, data_id: int = -1):
+                 platform: str, record: str, date: int, data_id: int = -1):
         """
 
         :param predict_id: 预算制定流水号
@@ -62,6 +64,7 @@ class OneMonthPredict:
         :param region_one: 区域-第一月线下
         :param platform: 电商平台
         :param record: 备注
+        :param date: 填写日期
         :param data_id: 这条记录在数据库里的id，通常不用, 默认-1
         """
         self.predict_id = predict_id
@@ -78,6 +81,7 @@ class OneMonthPredict:
         self.region_one = region_one
         self.platform = platform
         self.record = record
+        self.date = date
         self.data_id = data_id
 
     def generate_tuple(self) -> Tuple:
@@ -86,4 +90,5 @@ class OneMonthPredict:
         """
         return (self.predict_id, self.predict_man, self.predict_start_time, self.predict_part,
                 self.total_money_one, self.increase_shops_one, self.bottle_sale_one, self.box_sale_one,
-                self.predict_sale, self.area_one, self.province_one, self.region_one, self.platform, self.record)
+                self.predict_sale, self.area_one, self.province_one, self.region_one, self.platform, self.record,
+                self.date)

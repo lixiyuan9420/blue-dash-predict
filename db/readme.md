@@ -60,7 +60,8 @@ last updated 2022 - 6 - 29
         省份 varchar(20),
         区域 varchar(255),
         电商平台 varchar(20),
-        备注 varchar(200)
+        备注 varchar(200),
+        填写日期 int
     )
        
 

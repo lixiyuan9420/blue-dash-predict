@@ -37,6 +37,7 @@ from typing import Tuple
 #        电商平台 varchar(20),
 #        备注 varchar(200)
 #        预测销售总金额（三个月） float,
+#        填写日期 int
 #     )
 
 
