@@ -11,6 +11,7 @@ from logger.logger import infoLogger, errLogger
 
 # request and response handler
 from util.request_handler.common import verify_auth_token
+from util.request_handler.single_month import verified_single_month
 from util.request_handler.three_month import verified_third_month
 
 from util.response_handler import response_success, response_failure
@@ -77,8 +78,8 @@ def new_three_month() -> flask.wrappers.Response:
     """
     try:
         infoLogger.log("/predict/new_three_month 开始")
-        new_contract = verified_third_month(request.get_json())
-        success = third_month_sql.insertion_three_month(new_contract)
+        new_predict_three = verified_third_month(request.get_json())
+        success = third_month_sql.insert_third_month(new_predict_three)
         infoLogger.log("/predict/new_three_month success: " + str(success), line_below=True)
         return __quick_response(success)
     except Exception as e:
@@ -95,8 +96,8 @@ def new_one_month() -> flask.wrappers.Response:
     """
     try:
         infoLogger.log("/predict/new_one_month 开始")
-        new_contract = verified_third_month(request.get_json())
-        success = single_month_sql.insertion_single_month(new_contract)
+        new_predict_one = verified_single_month(request.get_json())
+        success = single_month_sql.insert_single_month(new_predict_one)
         infoLogger.log("/predict/new_one_month success: " + str(success), line_below=True)
         return __quick_response(success)
     except Exception as e:
