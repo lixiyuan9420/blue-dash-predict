@@ -47,7 +47,7 @@ class OneMonthPredict:
     def __init__(self, predict_id: str, predict_man: str, predict_start_time: str,
                  predict_part: str, total_money_one: float, increase_shops_one: int, bottle_sale_one: int,
                  box_sale_one: int, predict_sale: str, area_one: str, province_one: str, region_one: str,
-                 platform: str, record: str, date: int, data_id: int = -1):
+                 platform: str, record: str, date: str, data_id: int = -1):
         """
 
         :param predict_id: 预算制定流水号

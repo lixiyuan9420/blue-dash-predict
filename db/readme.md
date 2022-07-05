@@ -62,7 +62,7 @@ last updated 2022 - 6 - 29
         区域 varchar(255),
         电商平台 varchar(30),
         备注 varchar(200),
-        填写日期 int
+        填写日期 varchar(20)
     )
        
 
