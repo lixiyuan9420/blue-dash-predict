@@ -29,7 +29,7 @@ def __extract_single_month(data_json) -> OneMonthPredict:
     data = data_json["单月销量预测"]
     predict_id = data["预算制定流水号"]
     predict_man = data["预算填写人"]
-    predict_start_time = data["预算期间"]
+    predict_start_time = str(data["预算期间"])
     predict_part = data["预算部门"]
     total_money_one = convert_to_float(data["预测销售总金额"])
     increase_shops_one = convert_to_int(data["预计新增门店数"])
@@ -41,7 +41,7 @@ def __extract_single_month(data_json) -> OneMonthPredict:
     region_one = data["区域"]
     platform = data["电商平台"]
     record = data["备注"]
-    date = data["填写日期"]
+    date = str(data["填写日期"])
     return OneMonthPredict(predict_id, predict_man, predict_start_time, predict_part, total_money_one,
                            increase_shops_one,
                            bottle_sale_one, box_sale_one, predict_sale, area_one, province_one, region_one, platform,
