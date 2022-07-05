@@ -59,4 +59,4 @@ for handler in logging.root.handlers[:]:
 # 两个用来给其他包引用的单例
 infoLogger = __Logger("info_12345", logging.INFO, "log_info.txt")
 errLogger = __Logger("err_12345", logging.ERROR, "log_err.txt")
-bonusCalculationLog = __Logger("bonus_cal_12345", logging.INFO, "log_bonus_cal.txt")
+bonusCalculationLog = __Logger("predict_cal_12345", logging.INFO, "log_predict.txt")
