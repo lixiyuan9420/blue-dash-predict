@@ -75,7 +75,7 @@ def __extract_third_month(data_json) -> ThirdMonthPredict:
     region_three = data["区域-第三月线下"]
     platform = data["电商平台"]
     record = data["备注"]
-    total_money_all = data["预测销售总金额（三个月）"]
+    total_money_all = convert_to_float(data["预测销售总金额（三个月）"])
     return ThirdMonthPredict(predict_id, predict_man, predict_start_time,predict_end_time, predict_part, total_money_one,
                              increase_shops_one, bottle_sale_one, box_sale_one, total_money_two, increase_shops_two,
                              bottle_sale_two, box_sale_two, total_money_three, increase_shops_three, bottle_sale_three,
