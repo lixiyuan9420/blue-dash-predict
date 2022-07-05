@@ -49,7 +49,7 @@ last updated 2022 - 6 - 29
     create table 单月销量预测(
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         预算制定流水号 varchar(100),
-        预算填写人 varchar(30),
+        预算填写人 varchar(100),
         预算期间 varchar(30),
         预算部门 varchar(30),
         预测销售总金额 float,
