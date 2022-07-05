@@ -5,8 +5,8 @@ from db.operation.single_month import OneMonthPredict
 from db.standard import standard_update, standard_query
 
 insertion_single_month = "insert into 单月销量预测(预算制定流水号,预算填写人,预算期间,预算部门,预测销售总金额,预计新增门店数," \
-                         "'线下渠道预估轻饮酒总销量（瓶）','线下渠道预估蓝气罐总销量（箱）',销售预测,大区,省份,区域,电商平台,备注)" \
-                         "values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                         "'线下渠道预估轻饮酒总销量（瓶）','线下渠道预估蓝气罐总销量（箱）',销售预测,大区,省份,区域,电商平台,备注,填写日期)" \
+                         "values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 query_single_month = "select * from 单月销量预测"
 update_single_month = "update 单月销量预测 set 预测销售总金额 = %s, 预计新增门店数 = %s ,'线下渠道预估轻饮酒总销量（瓶）' = %s," \
                       "'线下渠道预估蓝气罐总销量（箱）' = %s where 预算填写人 = %s and 预算期间 = %s"
