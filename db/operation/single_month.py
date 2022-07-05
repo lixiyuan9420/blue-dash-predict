@@ -35,9 +35,9 @@ class OneMonthPredict:
         bottle_sale_one:线下渠道预估轻饮酒总销量（瓶）
         box_sale_one:线下渠道预估蓝气罐总销量（箱）
         predict_sale:销售预测
-        area_one:大区-第一月线下
-        province_one:省份-第一月线下
-        region_one:区域-第一月线下
+        area_one:大区
+        province_one:省份
+        region_one:区域
         platform:电商平台
         record:备注
         date:填写日期
@@ -46,7 +46,7 @@ class OneMonthPredict:
 
     def __init__(self, predict_id: str, predict_man: str, predict_start_time: str,
                  predict_part: str, total_money_one: float, increase_shops_one: int, bottle_sale_one: int,
-                 box_sale_one: int, predict_sale: float, area_one: str, province_one: str, region_one: str,
+                 box_sale_one: int, predict_sale: str, area_one: str, province_one: str, region_one: str,
                  platform: str, record: str, date: int, data_id: int = -1):
         """
 
@@ -56,8 +56,8 @@ class OneMonthPredict:
         :param predict_part: 预算部门
         :param total_money_one: 预测销售总金额
         :param increase_shops_one: 预计新增门店数
-        :param bottle_sale_one: 线下渠道预估轻饮酒总销量
-        :param box_sale_one: 线下渠道预估蓝气罐总销量
+        :param bottle_sale_one: 线下渠道预估轻饮酒总销量（瓶）
+        :param box_sale_one: 线下渠道预估蓝气罐总销量（箱）
         :param predict_sale: 销售预测
         :param area_one: 大区-第一月线下
         :param province_one: 省份-第一月线下
@@ -87,6 +87,8 @@ class OneMonthPredict:
     def generate_tuple(self) -> Tuple:
         """
             返回一个用于插入新记录的有序元组。
+            (预算制定流水号,预算填写人,预算期间,预算部门,预测销售总金额,预计新增门店数,
+            '线下渠道预估轻饮酒总销量（瓶）','线下渠道预估蓝气罐总销量（箱）',销售预测,大区,省份,区域,电商平台,备注,填写日期)
         """
         return (self.predict_id, self.predict_man, self.predict_start_time, self.predict_part,
                 self.total_money_one, self.increase_shops_one, self.bottle_sale_one, self.box_sale_one,
