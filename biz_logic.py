@@ -98,7 +98,6 @@ def new_one_month() -> flask.wrappers.Response:
     try:
         infoLogger.log("/predict/new_one_month 开始")
         new_predict_1 = __extract_single_month(request.get_json())
-        infoLogger.log(new_predict_1.predict_id,new_predict_1.predict_sale,new_predict_1.predict_man)
         infoLogger.log(new_predict_1)
         success = single_month_sql.insert_single_month(new_predict_1)
         infoLogger.log("/predict/new_one_month success: " + str(success), line_below=True)
