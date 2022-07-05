@@ -14,6 +14,9 @@ insertion_three_month = "insert into 三月销量预测(预算制定流水号,�
                         "values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 query_three_month = "select * from 三月销量预测"
 
+# 用于计算判断
+condition_ = "where "
+
 
 def insert_third_month(single_month: ThirdMonthPredict) -> bool:
     """
