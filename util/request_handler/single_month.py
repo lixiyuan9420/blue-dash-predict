@@ -41,8 +41,10 @@ def __extract_single_month(data_json) -> OneMonthPredict:
     region_one = data["区域"]
     platform = data["电商平台"]
     record = data["备注"]
-    return OneMonthPredict(predict_id,predict_man,predict_start_time,predict_part,total_money_one,increase_shops_one,
-                           bottle_sale_one,box_sale_one,predict_sale,area_one,province_one,region_one,platform,record)
+    return OneMonthPredict(predict_id, predict_man, predict_start_time, predict_part, total_money_one,
+                           increase_shops_one,
+                           bottle_sale_one, box_sale_one, predict_sale, area_one, province_one, region_one, platform,
+                           record, data)
 
 
 def verified_single_month(data_json) -> OneMonthPredict:
