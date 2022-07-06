@@ -45,7 +45,7 @@ def extract_third_month(data_json) -> ThirdMonthPredict:
     :param data_json: JSON
     :return:ThirdMonthPredict
     """
-    data = data_json["单月销量预测"]
+    data = data_json["三月销量预测"]
     predict_id = data["预算制定流水号"]
     predict_man = data["预算填写人"]
     predict_start_time = data["预算期间"]
