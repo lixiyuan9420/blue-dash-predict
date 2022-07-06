@@ -5,21 +5,23 @@ from typing import Tuple
 
 # create table 单月销量预测(
 #         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-#         预算制定流水号 varchar(50),
-#         预算填写人 varchar(10),
-#         预算期间 varchar(10),
-#         预算部门 varchar(20),
+#         预算制定流水号 varchar(200),
+#         预算填写人 varchar(100),
+#         预算期间 varchar(30),
+#         预算部门 varchar(30),
 #         预测销售总金额 float,
 #         预计新增门店数 int,
-#         线下渠道预估轻饮酒总销量（瓶） int,
-#         线下渠道预估蓝气罐总销量（箱） int,
+#         `线下渠道预估轻饮酒总销量（瓶）` int,
+#         `线下渠道预估蓝气罐总销量（箱）` int,
+#         `电商预估轻饮酒总销量（瓶）` int,
+#         `电商预估蓝气罐总销量（箱）` int,
 #         销售预测 varchar(20),
-#         大区 varchar(20),
-#         省份 varchar(20),
+#         大区 varchar(30),
+#         省份 varchar(30),
 #         区域 varchar(255),
-#         电商平台 varchar(20),
+#         电商平台 varchar(30),
 #         备注 varchar(200),
-#         填写日期 int,
+#         填写日期 varchar(20)
 #     )
 
 class OneMonthPredict:
@@ -34,6 +36,8 @@ class OneMonthPredict:
         increase_shops_one:预计新增门店数
         bottle_sale_one:线下渠道预估轻饮酒总销量（瓶）
         box_sale_one:线下渠道预估蓝气罐总销量（箱）
+        online_bottle:电商预估轻饮酒总销量（瓶）
+        online_box:电商预估蓝气罐总销量（箱）
         predict_sale:销售预测
         area_one:大区
         province_one:省份
@@ -46,7 +50,8 @@ class OneMonthPredict:
 
     def __init__(self, predict_id: str, predict_man: str, predict_start_time: str,
                  predict_part: str, total_money_one: float, increase_shops_one: int, bottle_sale_one: int,
-                 box_sale_one: int, predict_sale: str, area_one: str, province_one: str, region_one: str,
+                 box_sale_one: int, online_bottle: int, online_box: int, predict_sale: str, area_one: str,
+                 province_one: str, region_one: str,
                  platform: str, record: str, date: str, data_id: int = -1):
         """
 
@@ -58,10 +63,12 @@ class OneMonthPredict:
         :param increase_shops_one: 预计新增门店数
         :param bottle_sale_one: 线下渠道预估轻饮酒总销量（瓶）
         :param box_sale_one: 线下渠道预估蓝气罐总销量（箱）
+        :param online_bottle: 电商预估轻饮酒总销量（瓶）
+        :param online_box: 电商预估蓝气罐总销量（箱）
         :param predict_sale: 销售预测
-        :param area_one: 大区-第一月线下
-        :param province_one: 省份-第一月线下
-        :param region_one: 区域-第一月线下
+        :param area_one: 大区
+        :param province_one: 省份
+        :param region_one: 区域
         :param platform: 电商平台
         :param record: 备注
         :param date: 填写日期
@@ -75,6 +82,8 @@ class OneMonthPredict:
         self.increase_shops_one = increase_shops_one
         self.bottle_sale_one = bottle_sale_one
         self.box_sale_one = box_sale_one
+        self.online_bottle = online_bottle
+        self.online_box = online_box
         self.predict_sale = predict_sale
         self.area_one = area_one
         self.province_one = province_one
@@ -88,9 +97,11 @@ class OneMonthPredict:
         """
             返回一个用于插入新记录的有序元组。
             (预算制定流水号,预算填写人,预算期间,预算部门,预测销售总金额,预计新增门店数,
-            '线下渠道预估轻饮酒总销量（瓶）','线下渠道预估蓝气罐总销量（箱）',销售预测,大区,省份,区域,电商平台,备注,填写日期)
+            `线下渠道预估轻饮酒总销量（瓶）`,`线下渠道预估蓝气罐总销量（箱）`,`电商预估轻饮酒总销量（瓶）`,
+            `电商预估蓝气罐总销量（箱）`,销售预测,大区,省份,区域,电商平台,备注,填写日期)
         """
         return (self.predict_id, self.predict_man, self.predict_start_time, self.predict_part,
                 self.total_money_one, self.increase_shops_one, self.bottle_sale_one, self.box_sale_one,
+                self.online_bottle, self.online_box,
                 self.predict_sale, self.area_one, self.province_one, self.region_one, self.platform, self.record,
                 self.date)

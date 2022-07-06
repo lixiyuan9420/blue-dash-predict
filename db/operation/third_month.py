@@ -5,40 +5,46 @@ from typing import Tuple
 
 # 三个月的销量预测
 # 数据唯一
-# create table 三月销量预测 (
-#        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-#        预算制定流水号 varchar(50),
-#        预算填写人 varchar(10),
-#        预算期间 varchar(10),
-#        预算截止期 varchar(10),
-#        预算部门 varchar(20),
-#        预测销售总金额 float,
-#        预计新增门店数 int,
-#        线下渠道预估轻饮酒总销量（瓶） int,
-#        线下渠道预估蓝气罐总销量（箱） int,
-#        预测销售总金额-二月 float,
-#        预计新增门店数-二月 int,
-#        线下渠道预估轻饮酒总销量（瓶）-二月 int,
-#        线下渠道预估蓝气罐总销量（箱）-二月 int,
-#        预测销售总金额-三月 float,
-#        预计新增门店数-三月 int,
-#        线下渠道预估轻饮酒总销量（瓶）-三月 int,
-#        线下渠道预估蓝气罐总销量（箱）-三月 int,
-#        销售预测 varchar(20),
-#        大区-第一月线下 varchar(20),
-#        省份-第一月线下 varchar(20),
-#        区域-第一月线下 varchar(255),
-#        大区-第二月线下 varchar(20),
-#        省份-第二月线下 varchar(20),
-#        区域-第二月线下 varchar(255),
-#        大区-第三月线下 varchar(20),
-#        省份-第三月线下 varchar(20),
-#        区域-第三月线下 varchar(255),
-#        电商平台 varchar(20),
-#        备注 varchar(200)
-#        预测销售总金额（三个月） float,
-#        填写日期 int
-#     )
+# create table `三月销量预测` (
+#            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+#            `预算制定流水号` varchar(200),
+#            `预算填写人` varchar(100),
+#            `预算期间` varchar(30),
+#            `预算截止期` varchar(30),
+#            `预算部门` varchar(60),
+#            `预测销售总金额` float,
+#            `预计新增门店数` int,
+#            `线下渠道预估轻饮酒总销量（瓶）` int,
+#            `线下渠道预估蓝气罐总销量（箱）` int,
+#            `电商预估轻饮酒总销量（瓶）` int,
+#            `电商预估蓝气罐总销量（箱）` int,
+#            `预测销售总金额-二月` float,
+#            `预计新增门店数-二月` int,
+#            `线下渠道预估轻饮酒总销量（瓶）-二月` int,
+#            `线下渠道预估蓝气罐总销量（箱）-二月` int,
+#            `电商预估轻饮酒总销量（瓶）-二月` int,
+#            `电商预估蓝气罐总销量（箱）-二月` int,
+#            `预测销售总金额-三月` float,
+#            `预计新增门店数-三月` int,
+#            `线下渠道预估轻饮酒总销量（瓶）-三月` int,
+#            `线下渠道预估蓝气罐总销量（箱）-三月` int,
+#            `电商预估轻饮酒总销量（瓶）-三月` int,
+#            `电商预估蓝气罐总销量（箱）-三月` int,
+#            `销售预测` varchar(20),
+#            `大区-第一月线下` varchar(20),
+#            `省份-第一月线下` varchar(20),
+#            `区域-第一月线下` varchar(255),
+#            `大区-第二月线下` varchar(20),
+#            `省份-第二月线下` varchar(20),
+#            `区域-第二月线下` varchar(255),
+#            `大区-第三月线下` varchar(20),
+#            `省份-第三月线下` varchar(20),
+#            `区域-第三月线下` varchar(255),
+#            `电商平台` varchar(20),
+#            `备注` varchar(200),
+#            `预测销售总金额（三个月）` float,
+#            `填写日期` varchar(20)
+#         )
 
 
 class ThirdMonthPredict:
@@ -55,14 +61,20 @@ class ThirdMonthPredict:
         increase_shops_one:预计新增门店数
         bottle_sale_one:线下渠道预估轻饮酒总销量（瓶）
         box_sale_one:线下渠道预估蓝气罐总销量（箱）
+        online_bottle_one:电商预估轻饮酒总销量（瓶）
+        online_box_one:电商预估蓝气罐总销量（箱）
         total_money_two:预测销售总金额-二月
         increase_shops_two:预计新增门店数-二月
         bottle_sale_two:线下渠道预估轻饮酒总销量（瓶）-二月
         box_sale_two:线下渠道预估蓝气罐总销量（箱）-二月
+        online_bottle_two:电商预估轻饮酒总销量（瓶）-二月
+        online_box_two:电商预估蓝气罐总销量（箱）-二月
         total_money_three:预测销售总金额-三月
         increase_shops_three:预计新增门店数-三月
         bottle_sale_three:线下渠道预估轻饮酒总销量（瓶）-三月
         box_sale_three:线下渠道预估蓝气罐总销量（箱）-三月
+        online_bottle_three:电商预估轻饮酒总销量（瓶）-三月
+        online_box_three:电商预估蓝气罐总销量（箱）-三月
         predict_sale:销售预测
         area_one:大区-第一月线下
         province_one:省份-第一月线下
@@ -81,8 +93,11 @@ class ThirdMonthPredict:
 
     def __init__(self, predict_id: str, predict_man: str, predict_start_time: str, predict_end_time: str,
                  predict_part: str, total_money_one: float, increase_shops_one: int, bottle_sale_one: int,
+                 online_bottle_one: int, online_box_one: int,
                  box_sale_one: int, total_money_two: float, increase_shops_two: int, bottle_sale_two: int,
+                 online_bottle_two: int, online_box_two: int,
                  box_sale_two: int, total_money_three: float, increase_shops_three: int, bottle_sale_three: int,
+                 online_bottle_three: int, online_box_three: int,
                  box_sale_three: int, predict_sale: float, area_one: str, province_one: str, region_one: str,
                  area_two: str, province_two: str, region_two: str, area_three: str, province_three: str,
                  region_three: str, platform: str, record: str, total_money_all: float, data_id: int = -1):
@@ -97,14 +112,20 @@ class ThirdMonthPredict:
         :param increase_shops_one: 预计新增门店数
         :param bottle_sale_one: 线下渠道预估轻饮酒总销量
         :param box_sale_one: 线下渠道预估蓝气罐总销量
+        :param online_bottle_one:电商预估轻饮酒总销量（瓶）
+        :param online_box_one:电商预估蓝气罐总销量（箱）
         :param total_money_two: 预测销售总金额-二月
         :param increase_shops_two: 预计新增门店数-二月
         :param bottle_sale_two: 线下渠道预估轻饮酒总销量（瓶）-二月
         :param box_sale_two: 线下渠道预估蓝气罐总销量（箱）-二月
+        :param online_bottle_two:电商预估轻饮酒总销量（瓶）-二月
+        :param online_box_two:电商预估蓝气罐总销量（箱）-二月
         :param total_money_three: 预测销售总金额-三月
         :param increase_shops_three: 预计新增门店数-三月
         :param bottle_sale_three: 线下渠道预估轻饮酒总销量（瓶）-三月
         :param box_sale_three: 线下渠道预估蓝气罐总销量（箱）-三月
+        :param online_bottle_three:电商预估轻饮酒总销量（瓶）-三月
+        :param online_box_three:电商预估蓝气罐总销量（箱）-三月
         :param predict_sale: 销售预测
         :param area_one: 大区-第一月线下
         :param province_one: 省份-第一月线下
@@ -129,14 +150,20 @@ class ThirdMonthPredict:
         self.increase_shops_one = increase_shops_one
         self.bottle_sale_one = bottle_sale_one
         self.box_sale_one = box_sale_one
+        self.online_bottle_one = online_bottle_one
+        self.online_box_one = online_box_one
         self.total_money_two = total_money_two
         self.increase_shops_two = increase_shops_two
         self.bottle_sale_two = bottle_sale_two
         self.box_sale_two = box_sale_two
+        self.online_bottle_two = online_bottle_two
+        self.online_box_two = online_box_two
         self.total_money_three = total_money_three
         self.increase_shops_three = increase_shops_three
         self.bottle_sale_three = bottle_sale_three
         self.box_sale_three = box_sale_three
+        self.online_bottle_three = online_bottle_three
+        self.online_box_three = online_box_three
         self.predict_sale = predict_sale
         self.area_one = area_one
         self.province_one = province_one
@@ -159,12 +186,12 @@ class ThirdMonthPredict:
         """
         return (self.predict_id, self.predict_man, self.predict_start_time, self.predict_end_time, self.predict_part,
                 self.total_money_one,
-                self.increase_shops_one, self.bottle_sale_one, self.box_sale_one, self.total_money_two,
+                self.increase_shops_one, self.bottle_sale_one, self.box_sale_one, self.online_bottle_one,
+                self.online_box_one, self.total_money_two,
                 self.increase_shops_two, self.bottle_sale_two,
-                self.box_sale_two, self.total_money_three, self.increase_shops_three, self.bottle_sale_three,
-                self.box_sale_three, self.predict_sale,
+                self.box_sale_two, self.online_bottle_two, self.online_box_two, self.total_money_three,
+                self.increase_shops_three, self.bottle_sale_three,
+                self.box_sale_three, self.online_bottle_three, self.online_box_three, self.predict_sale,
                 self.area_one, self.province_one, self.region_one, self.area_two, self.province_two, self.region_two,
                 self.area_three, self.province_three,
                 self.region_three, self.platform, self.record, self.total_money_all)
-
-

@@ -1,6 +1,5 @@
 import config
 from flask import Flask
-from db import conn
 import biz_logic
 
 # 创建一个Flask app对象
