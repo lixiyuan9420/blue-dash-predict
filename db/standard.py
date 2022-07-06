@@ -65,7 +65,7 @@ def standard_update(sql: str, params: Tuple) -> bool:
         if len(params) == 0:
             cursor.execute(sql)
         else:
-            infoLogger.log(sql, params)
+            errLogger.log(sql,params)
             cursor.execute(sql, params)
         connection.commit()
     except Exception as e:
