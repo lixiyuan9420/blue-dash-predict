@@ -48,14 +48,14 @@ last updated 2022 - 6 - 29
     
     create table 单月销量预测(
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        预算制定流水号 varchar(100),
+        预算制定流水号 varchar(200),
         预算填写人 varchar(100),
         预算期间 varchar(30),
         预算部门 varchar(30),
         预测销售总金额 float,
         预计新增门店数 int,
-        线下渠道预估轻饮酒总销量（瓶） int,
-        线下渠道预估蓝气罐总销量（箱） int,
+        `线下渠道预估轻饮酒总销量（瓶）` int,
+        `线下渠道预估蓝气罐总销量（箱）` int,
         销售预测 varchar(20),
         大区 varchar(30),
         省份 varchar(30),
