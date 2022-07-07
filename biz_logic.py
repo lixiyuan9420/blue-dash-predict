@@ -104,7 +104,7 @@ def new_one_month() -> flask.wrappers.Response:
 
 
 @bp.route("/predict/new_one_month_two", methods=["POST"])
-def new_one_month() -> flask.wrappers.Response:
+def new_one_month_two() -> flask.wrappers.Response:
     """
     插入一个新的一月销量预测,缓存第二月的数据。
 
@@ -122,7 +122,7 @@ def new_one_month() -> flask.wrappers.Response:
 
 
 @bp.route("/predict/new_one_month_three", methods=["POST"])
-def new_one_month() -> flask.wrappers.Response:
+def new_one_month_three() -> flask.wrappers.Response:
     """
     插入一个新的一月销量预测,缓存第二月的数据。
 
