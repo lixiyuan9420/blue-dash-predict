@@ -76,7 +76,7 @@ def __query_single_month(condition: str, params: Tuple = ()) -> List[OneMonthPre
 
 def query_total_by_area(area: str, date: str) -> List[OneMonthPredict]:
     """
-    
+
 
     :param date: str
     :param area: str
