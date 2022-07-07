@@ -11,6 +11,8 @@ from logger.logger import infoLogger, errLogger
 # request and response handler
 from util.request_handler.common import verify_auth_token
 from util.request_handler.single_month import extract_single_month
+from util.request_handler.single_month_three import extract_single_month_three
+from util.request_handler.single_month_two import extract_single_month_two
 from util.request_handler.three_month import verified_third_month, extract_third_month
 from util.response_handler import response_success, response_failure
 
@@ -112,9 +114,9 @@ def new_one_month_two() -> flask.wrappers.Response:
     """
     try:
         infoLogger.log("/predict/new_one_month_two 开始")
-        new_predict_one = extract_single_month(request.get_json())
-        success = single_month_sql.insert_single_month_two(new_predict_one)
-        infoLogger.log("/predict/new_one_month success: " + str(success), line_below=True)
+        new_predict_two = extract_single_month_two(request.get_json())
+        success = single_month_sql.insert_single_month_two(new_predict_two)
+        infoLogger.log("/predict/new_one_month_two success: " + str(success), line_below=True)
         return __quick_response(success)
     except Exception as e:
         __log_err(e, request)
@@ -130,9 +132,9 @@ def new_one_month_three() -> flask.wrappers.Response:
     """
     try:
         infoLogger.log("/predict/new_one_month_three 开始")
-        new_predict_one = extract_single_month(request.get_json())
-        success = single_month_sql.insert_single_month_three(new_predict_one)
-        infoLogger.log("/predict/new_one_month success: " + str(success), line_below=True)
+        new_predict_three = extract_single_month_three(request.get_json())
+        success = single_month_sql.insert_single_month_three(new_predict_three)
+        infoLogger.log("/predict/new_one_month_three success: " + str(success), line_below=True)
         return __quick_response(success)
     except Exception as e:
         __log_err(e, request)
