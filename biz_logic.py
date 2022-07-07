@@ -101,3 +101,39 @@ def new_one_month() -> flask.wrappers.Response:
     except Exception as e:
         __log_err(e, request)
         return response_failure()
+
+
+@bp.route("/predict/new_one_month_two", methods=["POST"])
+def new_one_month() -> flask.wrappers.Response:
+    """
+    插入一个新的一月销量预测,缓存第二月的数据。
+
+    :return: flask.wrappers.Response
+    """
+    try:
+        infoLogger.log("/predict/new_one_month_two 开始")
+        new_predict_one = extract_single_month(request.get_json())
+        success = single_month_sql.insert_single_month_two(new_predict_one)
+        infoLogger.log("/predict/new_one_month success: " + str(success), line_below=True)
+        return __quick_response(success)
+    except Exception as e:
+        __log_err(e, request)
+        return response_failure()
+
+
+@bp.route("/predict/new_one_month_three", methods=["POST"])
+def new_one_month() -> flask.wrappers.Response:
+    """
+    插入一个新的一月销量预测,缓存第二月的数据。
+
+    :return: flask.wrappers.Response
+    """
+    try:
+        infoLogger.log("/predict/new_one_month_three 开始")
+        new_predict_one = extract_single_month(request.get_json())
+        success = single_month_sql.insert_single_month_three(new_predict_one)
+        infoLogger.log("/predict/new_one_month success: " + str(success), line_below=True)
+        return __quick_response(success)
+    except Exception as e:
+        __log_err(e, request)
+        return response_failure()

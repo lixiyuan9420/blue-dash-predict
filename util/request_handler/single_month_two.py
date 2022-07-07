@@ -2,7 +2,7 @@ from db.operation.single_month import OneMonthPredict
 from util.request_handler.common import convert_to_int, convert_to_float, verify_auth_token
 
 
-def extract_single_month(data_json) -> OneMonthPredict:
+def extract_single_month_two(data_json) -> OneMonthPredict:
     """
     从JSON结构体中抽取出一个单月销量的预测。
     JSON结构体应该格式如下：
@@ -29,7 +29,7 @@ def extract_single_month(data_json) -> OneMonthPredict:
     :param data_json: JSON
     :return:OneMonthPredict
     """
-    data = data_json["单月销量预测"]
+    data = data_json["单月销量预测第二月"]
     predict_id = data["预算制定流水号"]
     predict_man = data["预算填写人"]
     predict_start_time = str(data["预算期间"])
@@ -54,7 +54,7 @@ def extract_single_month(data_json) -> OneMonthPredict:
                            record, date)
 
 
-def verified_single_month(data_json) -> OneMonthPredict:
+def verified_single_month_two(data_json) -> OneMonthPredict:
     """
     验证请求身份，并从JSON结构体中抽取出一个单月销量预测。
     JSON结构体应该格式如下：
@@ -83,5 +83,5 @@ def verified_single_month(data_json) -> OneMonthPredict:
     :return:OneMonthPredict
     """
     if verify_auth_token(data_json):
-        return extract_single_month(data_json)
+        return extract_single_month_two(data_json)
     raise ValueError("验证身份信息失败！")
