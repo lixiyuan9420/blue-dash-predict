@@ -30,47 +30,29 @@ def extract_sales(data_json) -> Sales:
     return Sales(sales_id, box_sale, bottle_sale, date, area)
 
 
-def __extract_sales(data_json) -> Tuple[Optional[str], Optional[str]]:
+def __extract_reality_query(data_json) -> Tuple[Optional[str], Optional[str]]:
     """
-    抽取出一个用于查询或计算大区的销售数据的元组。 抽取出的结果为：。
-    JSON结构体例子：
-
-    e.g., {
-
-    "查询预估“: {
-
-            大区: "xxx",
-            指定年月: "xxx",建议不为空
-
-        },
-    "token": "abcdefg123"
-    }
-
-    :param data_json: JSON
-    :return: Tuple[Optional[str], Optional[str], int, int]
+    处理json数据
+    :param data_json:
+    :return:
     """
-
-    data = data_json["查询预估"]
-    date = None
-    region = None
-    if len(data["大区"]) > 0:
-        region = data["大区"]
-    if len(data["指定年月"]) > 0:
-        date = data["指定年月"]
-    return region, date
+    data = data_json["查询销量数据"]
+    region = str(data["大区"])
+    year_month = str(data["指定年月"])
+    return region, year_month
 
 
-def verified_bonus_query(data_json) -> Tuple[Optional[str], Optional[str]]:
+def verified_reality_query(data_json) -> Tuple[Optional[str], Optional[str]]:
     """
     抽取出一个用于查询或计算销售人员提成的元组。 抽取出的结果为：销售人员编号，销售人员姓名，年，月。
     JSON结构体例子：
 
     e.g., {
 
-    "查询预估“: {
+    "查询销量数据“: {
 
-        大区: "xxx",
-        指定年月: "xxx",建议不为空
+        "大区": "xxx",
+        "指定年月": "xxx",建议不为空
 
     },
     "token": "abcdefg123"
@@ -80,5 +62,5 @@ def verified_bonus_query(data_json) -> Tuple[Optional[str], Optional[str]]:
     :return: Tuple[Optional[str], Optional[str], int, int]
     """
     if verify_auth_token(data_json):
-        return __extract_sales(data_json)
+        return __extract_reality_query(data_json)
     raise ValueError("验证身份信息失败！")

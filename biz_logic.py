@@ -11,7 +11,7 @@ from logger.logger import infoLogger, errLogger
 # request and response handler
 from util.request_handler import use
 from util.request_handler.common import verify_auth_token
-from util.request_handler.sales import extract_sales
+from util.request_handler.sales import extract_sales, verified_reality_query, __extract_reality_query
 from util.request_handler.single_month import extract_single_month, verified_predict, __extract_predict_query
 from util.request_handler.single_month_three import extract_single_month_three
 from util.request_handler.single_month_two import extract_single_month_two
@@ -182,10 +182,25 @@ def search_predict() -> flask.wrappers.Response:
     """
     try:
         infoLogger.log("/predict/search_predict 开始")
-        infoLogger.log(request)
-        infoLogger.log(request.get_json())
         the_tuple = __extract_predict_query(request.get_json())
         msg = use.stringify_predict_records(*the_tuple)
+        infoLogger.log("/predict/search_predict result: " + msg)
+        return response_with_msg(msg)
+    except Exception as e:
+        __log_err(e, request)
+        return response_failure()
+
+
+@bp.route("/predict/search_reality", methods=["POST"])
+def search_reality() -> flask.wrappers.Response:
+    """
+    查询某年月的某大区的销售总金额
+    :return: flask.wrappers.Response
+    """
+    try:
+        infoLogger.log("/predict/search_predict 开始")
+        the_tuple = __extract_reality_query(request.get_json())
+        msg = use.stringify_reality_records(*the_tuple)
         infoLogger.log("/predict/search_predict result: " + msg)
         return response_with_msg(msg)
     except Exception as e:

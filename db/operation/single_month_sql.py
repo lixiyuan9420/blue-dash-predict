@@ -80,7 +80,6 @@ def query_by_area(area: str, date: str) -> List[OneMonthPredict]:
     :param area: 年月
     :return: List[OneMonthPredict] 理论上长度应该等于1
     """
-
     return __query_single_month(condition_total_by_area, (area, date))
 
 

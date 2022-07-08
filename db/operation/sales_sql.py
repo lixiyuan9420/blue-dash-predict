@@ -38,11 +38,11 @@ def __query_sales(condition: str, params: Tuple = ()) -> List[Sales]:
     return r
 
 
-def query_sales(date: int, area: str) -> List[Sales]:
+def query_reality_by_area(area: str, date: str) -> List[Sales]:
     """
     根据日期和大区，返回一个sales
-    :param date: int
-    :param area: str
-    :return: List[Sales]
+    :param area: 地区
+    :param date: 年月
+    :return:
     """
     return __query_sales(condition_sales_by_area_and_date, (date, area))
