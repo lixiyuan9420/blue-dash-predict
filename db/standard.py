@@ -26,7 +26,6 @@ def standard_query(sql: str, params: Tuple) -> Optional[Tuple[Tuple]]:
         if len(params) == 0:
             cursor.execute(sql)
         else:
-            infoLogger.log(sql, params)
             cursor.execute(sql, params)
         r = cursor.fetchall()
     except Exception as e:
