@@ -95,15 +95,21 @@ def __extract_predict_query(data_json) ->Tuple[Optional[str], Optional[str]]:
     :param data_json:
     :return:
     """
-    data = data_json["销售提成请求"]
-    region = data["大区"]
-    year_month = data["指定年月"]
+    data = data_json["查询预测数据"]
+    region = str(data["大区"])
+    year_month = str(data["指定年月"])
     return region, year_month
 
 
 def verified_predict(data_json) ->Tuple[Optional[str], Optional[str]]:
     """
     返回大区，年月
+    {
+        "查询预测数据":{
+            "大区":"xxx",
+            "指定年月":"202207"
+        }
+    }
     :param data_json:
     :return:
     """
