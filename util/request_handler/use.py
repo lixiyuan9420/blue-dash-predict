@@ -79,7 +79,7 @@ def stringify_reality_records(region: Optional[str], year_month: Optional[str]) 
         for record in records:
             s = s + "大区: " + str(record.area) + \
                 " 蓝气罐：" + str(record.box_sale) + \
-                " 预估线下轻饮酒: " + str(record.bottle_sale) + \
+                " 轻饮酒: " + str(record.bottle_sale) + \
                 " 时间： " + str(record.date) + "\n"
             total_box = total_box + record.box_sale
             total_bottle = total_bottle + record.bottle_sale
@@ -89,3 +89,23 @@ def stringify_reality_records(region: Optional[str], year_month: Optional[str]) 
     except Exception as e:
         errLogger.log(e, enable_traceback=True, line_below=True)
         return str(e)
+
+
+def compute(region: Optional[str], year_month: Optional[str]) -> str:
+    reality_records = __search_reality_records(region, year_month)
+    predict_records = __search_predict_records(region, year_month)
+    reality_records_total_box = 0.0
+    reality_records_total_bottle = 0.0
+    predict_records_total_box = 0.0
+    predict_records_total_bottle = 0.0
+    for record in reality_records:
+        reality_records_total_box = reality_records_total_box + record.box_sale
+        reality_records_total_bottle = reality_records_total_bottle + record.bottle_sale
+
+    for record in predict_records:
+        predict_records_total_box = predict_records_total_box + record.box_sale_one + record.online_box
+        predict_records_total_bottle = predict_records_total_bottle + record.bottle_sale_one + record.online_bottle
+
+    balance = predict_records_total_box-reality_records_total_box
+    achievement = reality_records_total_box/predict_records_total_box*100
+    return "蓝气罐差额为" + balance + "达成率：" + achievement

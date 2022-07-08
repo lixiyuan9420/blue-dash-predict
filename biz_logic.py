@@ -206,3 +206,20 @@ def search_reality() -> flask.wrappers.Response:
     except Exception as e:
         __log_err(e, request)
         return response_failure()
+
+
+@bp.route("/predict/compute", methods=["POST"])
+def compute() -> flask.wrappers.Response:
+    """
+    查询某年月的某大区的销售总金额
+    :return: flask.wrappers.Response
+    """
+    try:
+        infoLogger.log("/predict/compute 开始")
+        the_tuple = __extract_reality_query(request.get_json())
+        msg = use.compute(*the_tuple)
+        infoLogger.log("/predict/compute result: " + msg)
+        return response_with_msg(msg)
+    except Exception as e:
+        __log_err(e, request)
+        return response_failure()
