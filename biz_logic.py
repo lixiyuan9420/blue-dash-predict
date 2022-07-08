@@ -175,7 +175,7 @@ def new_sales_com() -> flask.wrappers.Response:
 
 
 @bp.route("/predict/search_predict", methods=["POST"])
-def new_sales() -> flask.wrappers.Response:
+def search_predict() -> flask.wrappers.Response:
     """
     查询某年月的某大区的销售预测
     :return: flask.wrappers.Response
