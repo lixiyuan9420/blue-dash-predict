@@ -198,10 +198,10 @@ def search_reality() -> flask.wrappers.Response:
     :return: flask.wrappers.Response
     """
     try:
-        infoLogger.log("/predict/search_predict 开始")
+        infoLogger.log("/predict/search_reality 开始")
         the_tuple = __extract_reality_query(request.get_json())
         msg = use.stringify_reality_records(*the_tuple)
-        infoLogger.log("/predict/search_predict result: " + msg)
+        infoLogger.log("/predict/search_reality result: " + msg)
         return response_with_msg(msg)
     except Exception as e:
         __log_err(e, request)
