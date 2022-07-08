@@ -12,7 +12,7 @@ from logger.logger import infoLogger, errLogger
 from util.request_handler import use
 from util.request_handler.common import verify_auth_token
 from util.request_handler.sales import extract_sales
-from util.request_handler.single_month import extract_single_month, verified_predict
+from util.request_handler.single_month import extract_single_month, verified_predict, __extract_predict_query
 from util.request_handler.single_month_three import extract_single_month_three
 from util.request_handler.single_month_two import extract_single_month_two
 from util.request_handler.three_month import extract_third_month
@@ -182,7 +182,7 @@ def search_predict() -> flask.wrappers.Response:
     """
     try:
         infoLogger.log("/predict/search_predict 开始")
-        the_tuple = verified_predict(request.get_json())
+        the_tuple = __extract_predict_query(request.get_json())
         msg = use.stringify_predict_records(*the_tuple)
         infoLogger.log("/predict/search_predict result: " + msg)
         return response_with_msg(msg)
