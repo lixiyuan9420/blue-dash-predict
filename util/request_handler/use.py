@@ -34,7 +34,7 @@ def stringify_predict_records(region: Optional[str], year_month: Optional[str]) 
                 " 时间： " + str(record.date) + "\n"
             total_box = total_box + record.box_sale_one + record.online_box
             total_bottle = total_bottle + record.bottle_sale_one + record.online_bottle
-        return s + "蓝气罐总销量：" + total_box + "轻饮酒总销量：" + total_bottle
+        return s + "蓝气罐总销量：" + str(total_box) + "轻饮酒总销量：" + str(total_bottle)
     except AssertionError as e:
         return str(e)
     except Exception as e:
