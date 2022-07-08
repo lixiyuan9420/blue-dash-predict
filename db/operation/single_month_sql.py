@@ -74,23 +74,13 @@ def __query_single_month(condition: str, params: Tuple = ()) -> List[OneMonthPre
     return r
 
 
-def query_total_by_area(area: str, date: str) -> List[OneMonthPredict]:
+def query_by_area(area: str, date: str) -> List[OneMonthPredict]:
     """
-
-
-    :param date: str
-    :param area: str
+    :param date: 大区
+    :param area: 年月
     :return: List[OneMonthPredict] 理论上长度应该等于1
     """
 
     return __query_single_month(condition_total_by_area, (area, date))
 
 
-def __update_single_month(params: Tuple = ()) -> bool:
-    """
-    根据给定条件更新单月的销量预测
-    :param params: Tuple
-    :return: List[OneMonthPredict]
-    """
-    sql = update_single_month
-    return standard_update(sql, params)

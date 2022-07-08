@@ -119,6 +119,17 @@ last updated 2022 - 6 - 29
         填写日期 varchar(20)
     )
 
+### 大区销量
+
+    create table 销售订单销量(
+        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        销售单号 varchar(200),
+        蓝气罐销量 int,
+        轻饮酒销量 int,
+        填写日期 int,
+        归属大区 varchar(50)
+    )
+
 
 
 

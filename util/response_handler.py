@@ -24,3 +24,13 @@ def response_failure() -> flask.wrappers.Response:
     :return:
     """
     return make_response(jsonify({key_result: value_failure}))
+
+
+def response_with_msg(msg: str) -> flask.wrappers.Response:
+    """
+    回复一个带有自定义消息的信息。
+
+    :param msg: str
+    :return:
+    """
+    return make_response(jsonify({key_result: msg}))

@@ -6,15 +6,17 @@ from flask import (
 from flask_cors import CORS
 
 # log
-from db.operation import third_month_sql, single_month_sql
+from db.operation import third_month_sql, single_month_sql, sales_sql
 from logger.logger import infoLogger, errLogger
 # request and response handler
+from util.request_handler import use
 from util.request_handler.common import verify_auth_token
-from util.request_handler.single_month import extract_single_month
+from util.request_handler.sales import extract_sales
+from util.request_handler.single_month import extract_single_month, verified_predict
 from util.request_handler.single_month_three import extract_single_month_three
 from util.request_handler.single_month_two import extract_single_month_two
-from util.request_handler.three_month import verified_third_month, extract_third_month
-from util.response_handler import response_success, response_failure
+from util.request_handler.three_month import extract_third_month
+from util.response_handler import response_success, response_failure, response_with_msg
 
 # db operation
 
@@ -136,6 +138,54 @@ def new_one_month_three() -> flask.wrappers.Response:
         success = single_month_sql.insert_single_month_three(new_predict_three)
         infoLogger.log("/predict/new_one_month_three success: " + str(success), line_below=True)
         return __quick_response(success)
+    except Exception as e:
+        __log_err(e, request)
+        return response_failure()
+
+
+@bp.route("/predict/new_sales", methods=["POST"])
+def new_sales() -> flask.wrappers.Response:
+    """
+    插入一条新的销售记录，每成交一笔，就会存储销量到数据库中
+    :return: flask.wrappers.Response
+    """
+    try:
+        infoLogger.logger("/predict/new_sales 开始")
+        new_sales_one = extract_sales(request.get_json())
+        success = sales_sql.insert_sales(new_sales_one)
+        infoLogger.log("/predict/new_sales success: " + str(success), line_below=True)
+        return __quick_response(success)
+    except Exception as e:
+        __log_err(e, request)
+        return response_failure()
+
+
+@bp.route("/predict/compute", methods=["POST"])
+def new_sales() -> flask.wrappers.Response:
+    """
+    插入一条新的销售记录，每成交一笔，就会存储销量到数据库中
+    :return: flask.wrappers.Response
+    """
+    try:
+        infoLogger.logger("/predict/compute 开始")
+
+    except Exception as e:
+        __log_err(e, request)
+        return response_failure()
+
+
+@bp.route("/predict/search_predict", methods=["POST"])
+def new_sales() -> flask.wrappers.Response:
+    """
+    查询某年月的某大区的销售预测
+    :return: flask.wrappers.Response
+    """
+    try:
+        infoLogger.logger("/predict/compute 开始")
+        the_tuple = verified_predict(request.get_json())
+        msg = use.stringify_predict_records(*the_tuple)
+        infoLogger.log("/bonus/calculation result: " + msg)
+        return response_with_msg(msg)
     except Exception as e:
         __log_err(e, request)
         return response_failure()

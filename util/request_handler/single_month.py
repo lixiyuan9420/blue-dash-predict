@@ -1,3 +1,5 @@
+from typing import Tuple, Optional
+
 from db.operation.single_month import OneMonthPredict
 from util.request_handler.common import convert_to_int, convert_to_float, verify_auth_token
 
@@ -84,4 +86,27 @@ def verified_single_month(data_json) -> OneMonthPredict:
     """
     if verify_auth_token(data_json):
         return extract_single_month(data_json)
+    raise ValueError("验证身份信息失败！")
+
+
+def __extract_predict_query(data_json) ->Tuple[Optional[str], Optional[str]]:
+    """
+    处理json数据
+    :param data_json:
+    :return:
+    """
+    data = data_json["销售提成请求"]
+    region = data["大区"]
+    year_month = data["指定年月"]
+    return region, year_month
+
+
+def verified_predict(data_json) ->Tuple[Optional[str], Optional[str]]:
+    """
+    返回大区，年月
+    :param data_json:
+    :return:
+    """
+    if verify_auth_token(data_json):
+        return __extract_predict_query(data_json)
     raise ValueError("验证身份信息失败！")
