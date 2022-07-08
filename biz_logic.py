@@ -150,7 +150,7 @@ def new_sales() -> flask.wrappers.Response:
     :return: flask.wrappers.Response
     """
     try:
-        infoLogger.logger("/predict/new_sales 开始")
+        infoLogger.log("/predict/new_sales 开始")
         new_sales_one = extract_sales(request.get_json())
         success = sales_sql.insert_sales(new_sales_one)
         infoLogger.log("/predict/new_sales success: " + str(success), line_below=True)
@@ -167,7 +167,7 @@ def new_sales_com() -> flask.wrappers.Response:
     :return: flask.wrappers.Response
     """
     try:
-        infoLogger.logger("/predict/compute 开始")
+        infoLogger.log("/predict/compute 开始")
 
     except Exception as e:
         __log_err(e, request)
@@ -181,7 +181,7 @@ def search_predict() -> flask.wrappers.Response:
     :return: flask.wrappers.Response
     """
     try:
-        infoLogger.logger("/predict/compute 开始")
+        infoLogger.log("/predict/compute 开始")
         the_tuple = verified_predict(request.get_json())
         msg = use.stringify_predict_records(*the_tuple)
         infoLogger.log("/bonus/calculation result: " + msg)
