@@ -116,4 +116,4 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
     if reality_records_total_bottle != 0:
         bottle_achievement = predict_records_total_bottle / reality_records_total_bottle * 100
     return "蓝气罐差额  |" + " 达成率  |" +" 轻饮酒差额 |" + " 达成率 |\n" \
-           + str(balance) + "       | " + str(achievement) + "%  | " + str(bottle_balance) + "     | " + str(bottle_achievement) + "% | "
+           + "     "+str(balance) + "       | " + str(achievement) + "%  | " + str(bottle_balance) + "     | " + str(bottle_achievement) + "% | "
