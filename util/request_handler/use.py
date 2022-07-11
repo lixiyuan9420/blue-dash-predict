@@ -114,10 +114,10 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
         achievement = predict_records_total_box / reality_records_total_box * 100
     if reality_records_total_bottle != 0:
         bottle_achievement = predict_records_total_bottle / reality_records_total_bottle * 100
-    return "蓝气罐预销 |" + "实销 |" + "差额 |" + "达成率 |\n" \
-           + str(predict_records_total_box) + "箱  |   " + \
-           str(predict_records_total_bottle) + "箱 |   " \
-           + str(balance) + "箱  |  " + str(achievement) + "%  |  \n" \
-           + "轻饮酒预销 |" + "实销 |" + "差额 |" + "达成率 |\n" \
-           + str(predict_records_total_bottle)+"瓶  |  " + str(reality_records_total_bottle)+"瓶  |  " \
-           + str(bottle_balance) + "瓶  |  " + str(bottle_achievement) + "%   | "
+    return "蓝气罐预销|".center(15) + "实销 |".center(15) + "差额 |".center(15) + "达成率 |\n".center(15) \
+           + str(predict_records_total_box).center(8) + "箱  |   ".center(7) + \
+           str(predict_records_total_bottle).center(8) + "箱 |   ".center(7) \
+           + str(balance).center(8) + "箱  |  ".center(7) + str(achievement).center(8) + "%  |  \n".center(7) \
+           + "轻饮酒预销 |".center(15) + "实销 |".center(15) + "差额 |".center(15) + "达成率 |\n".center(15) \
+           + str(predict_records_total_bottle).center(8)+"瓶  |  ".center(7) + str(reality_records_total_bottle).center(8)+"瓶  |  ".center(7) \
+           + str(bottle_balance).center(8) + "瓶  |  ".center(7) + str(bottle_achievement).center(8) + "%   | ".center(7)
