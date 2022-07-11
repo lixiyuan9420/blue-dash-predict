@@ -160,20 +160,6 @@ def new_sales() -> flask.wrappers.Response:
         return response_failure()
 
 
-@bp.route("/predict/compute", methods=["POST"])
-def new_sales_com() -> flask.wrappers.Response:
-    """
-    插入一条新的销售记录，每成交一笔，就会存储销量到数据库中
-    :return: flask.wrappers.Response
-    """
-    try:
-        infoLogger.log("/predict/compute 开始")
-
-    except Exception as e:
-        __log_err(e, request)
-        return response_failure()
-
-
 @bp.route("/predict/search_predict", methods=["POST"])
 def search_predict() -> flask.wrappers.Response:
     """
