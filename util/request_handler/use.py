@@ -83,7 +83,7 @@ def stringify_reality_records(region: Optional[str], year_month: Optional[str]) 
                 " 时间： " + str(record.date) + "\n"
             total_box = total_box + record.box_sale
             total_bottle = total_bottle + record.bottle_sale
-        return s + "蓝气罐总销量：" + str(total_box) + "轻饮酒总销量：" + str(total_bottle)
+        return s + "实际蓝气罐总销量：" + str(total_box) + "实际轻饮酒总销量：" + str(total_bottle)
     except AssertionError as e:
         return str(e)
     except Exception as e:
@@ -108,4 +108,4 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
 
     balance = predict_records_total_box-reality_records_total_box
     achievement = reality_records_total_box/predict_records_total_box*100
-    return "蓝气罐差额为" + balance + "达成率：" + achievement
+    return "蓝气罐差额为" + str(balance) + "达成率：" + str(achievement)
