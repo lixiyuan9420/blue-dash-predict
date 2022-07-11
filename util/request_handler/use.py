@@ -107,5 +107,8 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
         predict_records_total_bottle = predict_records_total_bottle + record.bottle_sale_one + record.online_bottle
 
     balance = predict_records_total_box-reality_records_total_box
-    achievement = reality_records_total_box/predict_records_total_box*100
-    return "蓝气罐差额为" + str(balance) + "达成率：" + str(achievement)
+    achievement = predict_records_total_box/reality_records_total_box*100
+    bottle_balance = predict_records_total_bottle - reality_records_total_bottle
+    bottle_achievement = predict_records_total_bottle/reality_records_total_bottle*100
+    return "蓝气罐差额：" + str(balance) + "达成率：" + str(achievement) + "%\n" \
+            + "轻饮酒差额：" + str(bottle_balance) + "达成率：" + str(bottle_achievement) + "%"
