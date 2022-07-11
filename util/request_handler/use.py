@@ -92,7 +92,6 @@ def stringify_reality_records(region: Optional[str], year_month: Optional[str]) 
 
 
 def compute(region: Optional[str], year_month: Optional[str]) -> str:
-    global record
     reality_records = __search_reality_records(region, year_month)
     predict_records = __search_predict_records(region, year_month)
     reality_records_total_box = 0.0
@@ -101,13 +100,13 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
     predict_records_total_bottle = 0.0
     achievement = 0
     bottle_achievement = 0
-    for record in reality_records:
-        reality_records_total_box = reality_records_total_box + record.box_sale
-        reality_records_total_bottle = reality_records_total_bottle + record.bottle_sale
-
     for record in predict_records:
         predict_records_total_box = predict_records_total_box + record.box_sale_one + record.online_box
         predict_records_total_bottle = predict_records_total_bottle + record.bottle_sale_one + record.online_bottle
+
+    for record in reality_records:
+        reality_records_total_box = reality_records_total_box + record.box_sale
+        reality_records_total_bottle = reality_records_total_bottle + record.bottle_sale
 
     balance = reality_records_total_box - predict_records_total_box
     bottle_balance = reality_records_total_bottle - predict_records_total_bottle
@@ -115,6 +114,9 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
         achievement = predict_records_total_box / reality_records_total_box * 100
     if reality_records_total_bottle != 0:
         bottle_achievement = predict_records_total_bottle / reality_records_total_bottle * 100
-    return "蓝气罐差额 |" + " 达成率 |" +" 轻饮酒差额 |" + " 达成率 |\n" \
-           + "     "+str(balance) + "       |   " + str(achievement) + "%   |   "\
-           + str(bottle_balance) + "   |    " + str(bottle_achievement) + "%   | "
+    return "蓝气罐预测销量|" + "蓝气罐实际销量|" + "蓝气罐差额 |" + " 达成率 |" +"轻饮酒预测销量|" + "轻饮酒实际销量"+ " 轻饮酒差额 |" + " 达成率 |\n" \
+           + "     " + str(predict_records_total_box) + "箱  |" + "     " + \
+           str(predict_records_total_bottle) + "箱  |" + "    " \
+           + str(balance) + "箱    |   " + str(achievement) + "%   |   " \
+           + str(predict_records_total_bottle)+"瓶 |" + str(reality_records_total_bottle)+"瓶  |" \
+           + str(bottle_balance) + "瓶  |    " + str(bottle_achievement) + "%   | "
