@@ -114,9 +114,9 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
         achievement = predict_records_total_box / reality_records_total_box * 100
     if reality_records_total_bottle != 0:
         bottle_achievement = predict_records_total_bottle / reality_records_total_bottle * 100
-    return "蓝气罐预测销量|" + "蓝气罐实际销量|" + "蓝气罐差额 |" + " 达成率 |" +"轻饮酒预测销量|" + "轻饮酒实际销量"+ " 轻饮酒差额 |" + " 达成率 |\n" \
-           + "     " + str(predict_records_total_box) + "箱  |" + "     " + \
-           str(predict_records_total_bottle) + "箱  |" + "    " \
-           + str(balance) + "箱    |   " + str(achievement) + "%   |   " \
-           + str(predict_records_total_bottle)+"瓶 |" + str(reality_records_total_bottle)+"瓶  |" \
-           + str(bottle_balance) + "瓶  |    " + str(bottle_achievement) + "%   | "
+    return "蓝气罐预测销量|" + "蓝气罐实际销量|" + "蓝气罐差额|" + "达成率|" +"轻饮酒预测销量|" + "轻饮酒实际销量|"+ "轻饮酒差额|" + "达成率|\n" \
+           + "     " + str(predict_records_total_box) + "箱     |" + "     " + \
+           str(predict_records_total_bottle) + "箱    |" + "    " \
+           + str(balance) + "箱    |    " + str(achievement) + "%   |     " \
+           + str(predict_records_total_bottle)+"瓶   |" + str(reality_records_total_bottle)+"瓶    |" \
+           + str(bottle_balance) + "瓶     |    " + str(bottle_achievement) + "%   | "
