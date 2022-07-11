@@ -108,8 +108,8 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
         predict_records_total_box = predict_records_total_box + record.box_sale_one + record.online_box
         predict_records_total_bottle = predict_records_total_bottle + record.bottle_sale_one + record.online_bottle
 
-    balance = predict_records_total_box - reality_records_total_box
-    bottle_balance = predict_records_total_bottle - reality_records_total_bottle
+    balance = reality_records_total_box - predict_records_total_box
+    bottle_balance = reality_records_total_bottle - predict_records_total_bottle
     if reality_records_total_box != 0:
         achievement = predict_records_total_box / reality_records_total_box * 100
     if reality_records_total_bottle != 0:
