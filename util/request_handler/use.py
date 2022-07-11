@@ -118,5 +118,5 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
            + "     " + str(predict_records_total_box) + "箱        |      " + \
            str(predict_records_total_bottle) + "箱    |        " \
            + str(balance) + "箱    |    " + str(achievement) + "%     |     " \
-           + str(predict_records_total_bottle)+"瓶      |      " + str(reality_records_total_bottle)+"瓶    |" \
-           + str(bottle_balance) + "瓶     |    " + str(bottle_achievement) + "%   | "
+           + str(predict_records_total_bottle)+"瓶        |      " + str(reality_records_total_bottle)+"瓶    |         " \
+           + str(bottle_balance) + "瓶      |    " + str(bottle_achievement) + "%   | "
