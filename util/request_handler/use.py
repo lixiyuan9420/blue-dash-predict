@@ -92,6 +92,7 @@ def stringify_reality_records(region: Optional[str], year_month: Optional[str]) 
 
 
 def compute(region: Optional[str], year_month: Optional[str]) -> str:
+    global record
     reality_records = __search_reality_records(region, year_month)
     predict_records = __search_predict_records(region, year_month)
     reality_records_total_box = 0.0
@@ -114,5 +115,5 @@ def compute(region: Optional[str], year_month: Optional[str]) -> str:
         achievement = predict_records_total_box / reality_records_total_box * 100
     if reality_records_total_bottle != 0:
         bottle_achievement = predict_records_total_bottle / reality_records_total_bottle * 100
-    return "蓝气罐差额：" + str(balance) + "达成率：" + str(achievement) + "%\n" \
-           + "轻饮酒差额：" + str(bottle_balance) + "达成率：" + str(bottle_achievement) + "%"
+    return "大区  "+"时间  "+"蓝气罐差额   " + "达成率   " +"轻饮酒差额  " + "达成率  \n" \
+           + record.area +"  "+ record.date + " " + str(balance) + "  " + str(achievement) + "  " + str(bottle_balance) + "  " + str(bottle_achievement)
